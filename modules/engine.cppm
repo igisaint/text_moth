@@ -108,12 +108,12 @@ export class GlobalState {
                 return false;
             }
 
-            // parsing input
+            // Parsing input
             ParsedInput pi = Parser::parse_input(input);
             if (pi._task == Task::UNRECOGNIZABLE) {
                 inform_error(); return true;
             }
-            // hadling command - insert new state
+            // Hadling command - insert new state
             if (pi._task == Task::TEXT) {
                 if (_state.find(pi._line_num) != _state.end()) {
                     inform_error(); return true;
@@ -126,10 +126,10 @@ export class GlobalState {
                     inform_error(); return true;
                 }
 
-                // handling command - delete LocalState
+                // Handling command - delete LocalState
                 if (pi._task == Task::DELETE)
                     _state.erase(it);
-                // passing handling command to LocalState
+                // Passing handling command to LocalState
                 else if (!it->second.update_state(pi)) {
                     inform_error();
                 }
